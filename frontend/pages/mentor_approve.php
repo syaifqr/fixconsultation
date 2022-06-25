@@ -292,9 +292,28 @@ $acceptances = $acc->getApprove($user->user_id);
                                         <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'approve')">Approve</button>
                                         <button type="button" class="text-red-700 ml-1 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 " onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'reject')">Not Approve</button>
                                     <?php } elseif ($acceptance['status'] == 'active') { ?>
-                                        <button disabled type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>)">Approved</button>
+                                        <div class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-lg text-sm flex text-center py-2 px-4 w-3/4 mx-auto">
+                                            <div class="ml-5 text-green-500 bg-green-100 rounded-lg">
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-6 text-sm font-medium text-white">Diterima
+                                            </div>
+                                        </div>
                                     <?php } else { ?>
-                                        <button disabled type="button" class="text-red-700 ml-1 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Rejected</button>
+                                        <div class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 rounded-lg text-sm flex text-center py-2 px-4 w-3/4 mx-auto">
+                                            <div class="ml-5 text-red-500 bg-red-100  dark:bg-red-800 dark:text-red-200 rounded-lg">
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-6 text-sm font-medium text-white">
+                                                Tolak
+                                            </div>
+                                        </div>
                                     <?php } ?>
                                 </td>
                                 <td class="border-b px-4 py-2 text-center">
@@ -302,7 +321,7 @@ $acceptances = $acc->getApprove($user->user_id);
                                     <?php if ($acceptance['status'] == 'active') { ?>
                                         <a href="../../group_chat.php"><button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Konsultasi</button></a>
                                     <?php } else { ?>
-                                        <p>Reject</p>
+                                        <p>-</p>
                                     <?php } ?>
                                 </td>
                             </tr>
