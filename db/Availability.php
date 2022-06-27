@@ -100,7 +100,10 @@ class Availability
 
     public function getAllDataById($id)
     {
-        $sql = $this->db_conn->prepare("select * from availability where mentor_id = $id order by start_time asc");
+        $t = time();
+        $time = date("Y-m-d", $t);
+
+        $sql = $this->db_conn->prepare("select * from availability where mentor_id = $id and (start_time > '$time%') order by start_time asc");
 
         try {
             if ($sql->execute()) {
