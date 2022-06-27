@@ -1,6 +1,7 @@
 <?php
 
-class Availability {
+class Availability
+{
 
     private $availability_id;
     private $mentor_id;
@@ -15,81 +16,102 @@ class Availability {
         $this->db_conn = $db->connect();
     }
 
-    public function getId(){
+    public function getId()
+    {
         return $this->availability_id;
     }
 
-    public function setId($availability_id){
+    public function setId($availability_id)
+    {
         return $this->availability_id = $availability_id;
     }
 
-    public function getMentorId(){
+    public function getMentorId()
+    {
         return $this->mentor_id;
     }
 
-    public function setMentorId($mentor_id){
+    public function setMentorId($mentor_id)
+    {
         return $this->mentor_id = $mentor_id;
     }
 
-    public function getStartTime(){
+    public function getStartTime()
+    {
         return $this->start_time;
     }
 
-    public function setStartTime($start_time){
+    public function setStartTime($start_time)
+    {
         return $this->start_time = $start_time;
     }
 
-    public function getEndTime(){
+    public function getEndTime()
+    {
         return $this->end_time;
     }
 
-    public function setEndTime($end_time){
+    public function setEndTime($end_time)
+    {
         return $this->end_time = $end_time;
     }
 
-    public function saveDate(){
+    public function saveDate()
+    {
         $sql = $this->db_conn->prepare("INSERT INTO availability VALUES(null, :mentor_id, :start_time, :end_time)");
         $sql->bindParam(":mentor_id", $this->mentor_id);
         $sql->bindParam(":start_time", $this->start_time);
         $sql->bindParam(":end_time", $this->end_time);
 
-        try{
-            if($sql->execute()){
+        try {
+            if ($sql->execute()) {
                 return true;
-            }else {
+            } else {
                 return false;
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
 
-    public function getDataById($id){
+    public function getDataById($id)
+    {
         $t = time();
         $t1 = $t + 1296000;
 
-        $time = date("Y-m-d",$t);
-        $time2 = date("Y-m-d",$t1);
-        
+        $time = date("Y-m-d", $t);
+        $time2 = date("Y-m-d", $t1);
+
         $sql = $this->db_conn->prepare("select * from availability where mentor_id = $id and (start_time  
         BETWEEN '$time%' AND '$time2%')");
 
-        try{
-            if($sql->execute()){
+        try {
+            if ($sql->execute()) {
                 $data = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                 return $data;
-            }else {
+            } else {
                 return false;
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
 
+    public function getAllDataById($id)
+    {
+        $sql = $this->db_conn->prepare("select * from availability where mentor_id = $id order by start_time asc");
 
+        try {
+            if ($sql->execute()) {
+                $data = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-
+                return $data;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
-
-?>

@@ -46,7 +46,7 @@ switch ($_SESSION['user_data']->{'user'}->{'role_id'}) {
 
 // availability
 $objAva = new Availability;
-$dataAva = $objAva->getDataById($user->user_id);
+$dataAva = $objAva->getAllDataById($user->user_id);
 // var_dump($dataAva);
 
 
