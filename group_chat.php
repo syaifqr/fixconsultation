@@ -39,7 +39,7 @@ if (isset($_POST['endChat'])) {
 
         $objPriv->deletePrivillage($_POST['idEnd']);
 
-        return 'success';
+        return header('Location: /fixconsultation/frontend/pages/mentor_approve.php');
     }
 }
 
