@@ -466,28 +466,33 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user->user_id .
                 conn.onmessage = function(e) {
                     // console.log(e.data);
                     data = JSON.parse(e.data);
+                    console.log(e.data);
 
                     var styleBox = '';
                     var styleBox2 = '';
 
                     if (data.from == "Me") {
                         styleBox =
-                            'relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 rounded-xl shadow bg-red-200';
+                            'relative max-w-fit px-4 py-2 text-gray-700 rounded-xl shadow bg-red-200';
                         styleBox2 = 'justify-end';
+                        styleBox3 = 'text-right';
+                        styleBox4 = ' ml-[150px]';
                     } else {
                         styleBox =
-                            'relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 bg-green-200 rounded-xl shadow';
+                            'relative max-w-fit px-4 py-2 text-gray-700 bg-green-200 rounded-xl shadow';
                         styleBox2 = 'justify-start';
+                        styleBox3 = 'text-left';
+                        styleBox4 = ' mr-[150px]';
                     }
 
                     if (data.group_id == id) {
                         var box = `<li class="flex ` + styleBox2 + `">
-                                            <div class="` + styleBox + `">
-                                                <p class="text-[#1e3f41] font-bold">` + data.from + `</p>
-                                                <span class="block text-justify">` + data.msg + `</span>
+                                            <div class="` + styleBox + ` ` + styleBox4 + `">
+                                                <p class="text-[#1e3f41] font-bold ` + styleBox3 + ` ">` + data.from + `</p>
+                                                <span class="block text-justify ` + styleBox3 + `">` + data.msg + `</span>
                                                 <span class="text-gray-500 text-xs flex justify-end">` + data.dt + `</span></p>
                                             </div>
-                                         </li>`;
+                                    </li>`;
 
                         $("#chat-container").append(box);
                     }
