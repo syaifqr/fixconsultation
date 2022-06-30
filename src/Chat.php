@@ -49,19 +49,23 @@ class Chat implements MessageComponentInterface
         $objChat->setCreatedAt(date("Y-m-d h:i:s"));
 
         if ($objChat->saveChat()) {
-            $objUser = new \Users;
-            $objUser->setId($data['user_id']);
-            $user = $objUser->getUserById();
+            // $objUser = new \Users;
+            // $objUser->setId($data['user_id']);
+            // $user = $objUser->getUserById();
 
-            include "../api/get_request.php";
+            include_once "../api/get_request.php";
             $dataUser = (json_decode(http_request_with_auth("https://account.lumintulogic.com/api/users.php", $_COOKIE['X-LUMINTU-REFRESHTOKEN']))->{'user'});
 
             for ($i = 0; $i < count($dataUser); $i++) {
-                if ($data['user_id'] == $dataUser[$i]->user_id) {
-                    $userName = $data[$i]->user_username;
-                    break;
+                // if ($data['user_id'] == $dataUser[$i]->user_id) {
+                //     $userName = $data[$i]->user_username;
+                // }
+                if ($dataUser[$i]->user_id == $data["user_id"]) {
+                    $userData = $dataUser[$i];
+                    $userName = $userData->user_username;
                 }
             }
+            $dataname = $userName;
             // $userName = 'testing';
             $data['msg'] = $data['msg'];
             $data['dt'] =  date("d-m-Y h:i:s");
@@ -76,7 +80,7 @@ class Chat implements MessageComponentInterface
             if ($from == $client) {
                 $data['from'] = "Me";
             } else {
-                $data['from'] = "Dia";
+                $data['from'] = $dataname;
             }
             $client->send(json_encode($data));
         }
