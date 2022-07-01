@@ -2,7 +2,8 @@
 
 1. clone
 2. import file database
-3. install / update composer : php ~/composer.phar require cboden/ratchet
+3. install / update composer : php ~/composer.phar require cboden/ratchet.
+   atau cukup jalankan perintah composer install pada folder project.
 4. cek file di dalam folder /src 
     ada 4 hal dasar class yang dibutuhkan dalam aplikasi, 4 event yang akan di listen :
     -onOpen --> dipanggil saat ada user yang terkoneksi.
