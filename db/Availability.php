@@ -74,6 +74,7 @@ class Availability
         }
     }
 
+    //Fungsi yang digunakan untuk mendapatkan jadwal sesuai dengan id mentor dengan rentang waktu 14 hari
     public function getDataById($id)
     {
         $t = time();
@@ -98,6 +99,7 @@ class Availability
         }
     }
 
+    //Fungsi yang digunakan untuk mendapatkan semua jadwal seorang mentor 
     public function getAllDataById($id)
     {
         $t = time();

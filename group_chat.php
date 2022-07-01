@@ -290,6 +290,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user->user_id .
                                 <?php
                                 require "./db/Groups.php";
                                 $objGroup = new Groups;
+                                //Mencari grup sesuai filter grup yang sudah dibuat
                                 $groups = $objGroup->filterGroup($user->user_id);
 
 
@@ -304,7 +305,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user->user_id .
 
                                         ?>
 
-
+                                <!-- Mendapatkan grup id yang diklik -->
                                 <a onclick="requestChat(<?= $group['group_id'] ?> , '<?= $user->user_email ?>', '<?= $group['group_name'] ?>' )"
                                     class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none rounded-t-xl">
                                     <img class="object-cover w-11 h-12 rounded-full" src="Img/icons/default_profile.svg"
@@ -440,7 +441,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user->user_id .
                         styleBox = 'bg-green-200 text-left mr-auto';
                         styleBox2 = 'ml-auto text-left';
                     }
-
+                    //Tampilan chat setelah direfresh
                     let contain = '<div class="max-w-fit ' + styleBox +
                         ' rounded-xl px-4 py-2 ..."><small class="font-bold ">' + val[
                             'username'] +
@@ -486,6 +487,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user->user_id .
                     }
 
                     if (data.group_id == id) {
+                        //Tampilan chat secara realtime
                         var box = `<li class="flex ` + styleBox2 + `">
                                             <div class="` + styleBox + ` ` + styleBox4 + `">
                                                 <p class="text-[#1e3f41] font-bold ` + styleBox3 + ` ">` + data.from + `</p>

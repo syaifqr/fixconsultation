@@ -49,17 +49,11 @@ class Chat implements MessageComponentInterface
         $objChat->setCreatedAt(date("Y-m-d h:i:s"));
 
         if ($objChat->saveChat()) {
-            // $objUser = new \Users;
-            // $objUser->setId($data['user_id']);
-            // $user = $objUser->getUserById();
-
+            //Mengambil api untuk keperluan mendapatkan data user yang sedang terlibat dalam chat berdasarkan id
             include_once "../api/get_request.php";
             $dataUser = (json_decode(http_request_with_auth("https://account.lumintulogic.com/api/users.php", $_COOKIE['X-LUMINTU-REFRESHTOKEN']))->{'user'});
 
             for ($i = 0; $i < count($dataUser); $i++) {
-                // if ($data['user_id'] == $dataUser[$i]->user_id) {
-                //     $userName = $data[$i]->user_username;
-                // }
                 if ($dataUser[$i]->user_id == $data["user_id"]) {
                     $userData = $dataUser[$i];
                     $userName = $userData->user_username;

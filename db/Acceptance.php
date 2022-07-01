@@ -92,6 +92,7 @@ class Acceptance{
         return $this->student_id = $student_id;
     }
 
+    //Fungsi yang dijalankan ketika request konsultasi disubmitkan
     public function saveData(){
         $statement = $this->db_conn->prepare("INSERT INTO acceptance VALUES(null,:name, :email,'disable', :time, :topic, :user_id, :student_id)");
         $statement->bindParam(':email', $this->email);
@@ -114,6 +115,7 @@ class Acceptance{
 
     }
 
+    //Fungsi mendapatkan semua data dari tabel acceptance 
     public function getAll(){
         $statement = $this->db_conn->prepare("SELECT * FROM acceptance");
 
@@ -189,6 +191,3 @@ class Acceptance{
 
 
 }
-
-
-?>
